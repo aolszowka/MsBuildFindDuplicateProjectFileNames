@@ -67,6 +67,7 @@ namespace MsBuildFindDuplicateProjectFileNames
             {
                 ".csproj",
                 ".fsproj",
+                ".sqlproj",
                 ".synproj",
                 ".vbproj",
             };
