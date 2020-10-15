@@ -9,6 +9,8 @@ namespace MsBuildFindDuplicateProjectFileNames
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
+    using System.Xml.Linq;
 
     using MsBuildFindDuplicateProjectFileNames.Properties;
 
@@ -21,10 +23,12 @@ namespace MsBuildFindDuplicateProjectFileNames
 
             string targetDirectory = string.Empty;
             bool showHelp = false;
+            bool xmlOutput = false;
 
             OptionSet p = new OptionSet()
             {
                 { "<>", Strings.TargetDirectoryArgument, v => targetDirectory = v },
+                { "xml", Strings.XmlOutputFlag, v => xmlOutput = v != null },
                 { "?|h|help", Strings.HelpDescription, v => showHelp = v != null },
             };
 
@@ -48,7 +52,21 @@ namespace MsBuildFindDuplicateProjectFileNames
             {
                 if (Directory.Exists(targetDirectory))
                 {
-                    Environment.ExitCode = PrintToConsole(targetDirectory);
+                    KeyValuePair<string, IDictionary<string, string>>[] duplicateProjectFiles =
+                        DuplicateProjectFileNames
+                        .Execute(targetDirectory)
+                        .ToArray();
+
+                    if (xmlOutput)
+                    {
+                        PrintXmlToConsole(duplicateProjectFiles);
+                    }
+                    else
+                    {
+                        PrintToConsole(duplicateProjectFiles);
+                    }
+
+                    Environment.ExitCode = duplicateProjectFiles.Length;
                 }
                 else
                 {
@@ -70,25 +88,39 @@ namespace MsBuildFindDuplicateProjectFileNames
             return 21;
         }
 
-        static int PrintToConsole(string targetDirectory)
+        static void PrintXmlToConsole(IEnumerable<KeyValuePair<string, IDictionary<string, string>>> duplicateProjects)
         {
-            int duplicatedProjectCount = 0;
-            IEnumerable<KeyValuePair<string, IDictionary<string, string>>> duplicateProjectFileNames = DuplicateProjectFileNames.Execute(targetDirectory);
+            XDocument outputDocument = new XDocument(new XDeclaration("1.0", null, null));
+            outputDocument.Add(new XElement("MsBuildFindDuplicateProjectFileNames"));
 
-            foreach (KeyValuePair<string, IDictionary<string, string>> duplicateProjectFileNameEntry in duplicateProjectFileNames)
+            foreach (KeyValuePair<string, IDictionary<string, string>> duplicateProject in duplicateProjects)
             {
-                duplicatedProjectCount++;
-                Console.WriteLine($"{duplicateProjectFileNameEntry.Key}:");
+                XElement projectElement = new XElement("Project", new XAttribute("Name", duplicateProject.Key));
+                foreach (KeyValuePair<string, string> duplicatedProjectEntry in duplicateProject.Value)
+                {
+                    XElement duplicatedProjectElement = new XElement("Duplicate", new XAttribute("Path", duplicatedProjectEntry.Key), new XAttribute("GUID", duplicatedProjectEntry.Value));
 
-                foreach (KeyValuePair<string, string> duplicatedProjectEntry in duplicateProjectFileNameEntry.Value)
+                    projectElement.Add(duplicatedProjectElement);
+                }
+                outputDocument.Root.Add(projectElement);
+            }
+
+            Console.WriteLine(outputDocument.ToString());
+        }
+
+        static void PrintToConsole(IEnumerable<KeyValuePair<string, IDictionary<string, string>>> duplicateProjects)
+        {
+            foreach (KeyValuePair<string, IDictionary<string, string>> duplicateProject in duplicateProjects)
+            {
+                Console.WriteLine($"{duplicateProject.Key}:");
+
+                foreach (KeyValuePair<string, string> duplicatedProjectEntry in duplicateProject.Value)
                 {
                     Console.WriteLine($"{duplicatedProjectEntry.Key}\t{duplicatedProjectEntry.Value}");
                 }
 
                 Console.WriteLine();
             }
-
-            return duplicatedProjectCount;
         }
     }
 }
