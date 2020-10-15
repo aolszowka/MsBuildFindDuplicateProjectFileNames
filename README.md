@@ -13,14 +13,15 @@ Note that if you rename a file you will need to update all MsBuild Project Syste
 
 ## Usage
 ```
-Usage: MsBuildFindDuplicateProjectFileNames.exe directory
+MsBuildFindDuplicateProjectFileNames C:\DirectoryWithProjects
 
-Scans given directory for MsBuild Projects; reporting any duplicates it finds.
-Invalid Command/Arguments. Valid commands are:
+Scans given directory for MsBuild Projects; reporting any duplicate Project
+Names it finds.
 
-[directory]    - [READS] Spins through the specified directory and all
-                 subdirectories for Project files; prints any duplicate
-                 names it finds. Returns the number of duplicates.
+Arguments:
+
+              <>            The directory to scan for MSBuild Projects
+  -?, -h, --help             Show this message and exit
 ```
 
 ## Hacking
@@ -33,3 +34,6 @@ Pull requests and bug reports are welcomed so long as they are MIT Licensed.
 
 ## License
 This tool is MIT Licensed.
+
+## Third Party Licenses
+This project uses other open source contributions see [LICENSES.md](LICENSES.md) for a comprehensive listing.
