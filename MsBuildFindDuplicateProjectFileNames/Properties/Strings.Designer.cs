@@ -100,7 +100,7 @@ namespace MsBuildFindDuplicateProjectFileNames.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MsBuildFindDuplicateProjectFileNames C:\DirectoryWithProjects.
+        ///   Looks up a localized string similar to Usage: MsBuildFindDuplicateProjectFileNames C:\DirectoryWithProjects [-xml].
         /// </summary>
         internal static string ShortUsageMessage {
             get {
@@ -114,6 +114,15 @@ namespace MsBuildFindDuplicateProjectFileNames.Properties {
         internal static string TargetDirectoryArgument {
             get {
                 return ResourceManager.GetString("TargetDirectoryArgument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Produce Output in XML Format.
+        /// </summary>
+        internal static string XmlOutputFlag {
+            get {
+                return ResourceManager.GetString("XmlOutputFlag", resourceCulture);
             }
         }
     }

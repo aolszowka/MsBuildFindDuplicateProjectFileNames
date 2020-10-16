@@ -133,9 +133,12 @@ Arguments:</value>
     <value>MsBuildFindDuplicateProjectFileNames</value>
   </data>
   <data name="ShortUsageMessage" xml:space="preserve">
-    <value>MsBuildFindDuplicateProjectFileNames C:\DirectoryWithProjects</value>
+    <value>Usage: MsBuildFindDuplicateProjectFileNames C:\DirectoryWithProjects [-xml]</value>
   </data>
   <data name="TargetDirectoryArgument" xml:space="preserve">
     <value>The directory to scan for MSBuild Projects</value>
+  </data>
+  <data name="XmlOutputFlag" xml:space="preserve">
+    <value>Produce Output in XML Format</value>
   </data>
 </root>

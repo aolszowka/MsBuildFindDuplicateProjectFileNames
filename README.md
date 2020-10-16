@@ -13,7 +13,7 @@ Note that if you rename a file you will need to update all MsBuild Project Syste
 
 ## Usage
 ```
-MsBuildFindDuplicateProjectFileNames C:\DirectoryWithProjects
+Usage: MsBuildFindDuplicateProjectFileNames C:\DirectoryWithProjects [-xml]
 
 Scans given directory for MsBuild Projects; reporting any duplicate Project
 Names it finds.
@@ -21,6 +21,7 @@ Names it finds.
 Arguments:
 
               <>            The directory to scan for MSBuild Projects
+      --xml                  Produce Output in XML Format
   -?, -h, --help             Show this message and exit
 ```
 
