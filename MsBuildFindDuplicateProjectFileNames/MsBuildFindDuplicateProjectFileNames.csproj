@@ -7,6 +7,24 @@
     <ProjectGuid>{7A32409D-26E0-4352-9087-79BD237D4B8D}</ProjectGuid>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+  <PropertyGroup>
+    <Authors>Ace Olszowka</Authors>
+    <Description>Find projects that have duplicated names.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageOutputPath>../nupkg</PackageOutputPath>
+    <PackageProjectUrl>https://github.com/aolszowka/MsBuildFindDuplicateProjectFileNames</PackageProjectUrl>
+    <PackAsTool>true</PackAsTool>
+    <RepositoryUrl>https://github.com/aolszowka/MsBuildFindDuplicateProjectFileNames</RepositoryUrl>
+    <ToolCommandName>project-findduplicatename</ToolCommandName>
+    <VersionPrefix>3.0.0</VersionPrefix>
+    <VersionSuffix>$(VersionSuffix)</VersionSuffix>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="DuplicateProjectFileNames.cs" />
     <Compile Include="MSBuildUtilities.cs" />
