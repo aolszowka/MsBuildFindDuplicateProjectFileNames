@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="MSBuildUtilities.cs" company="Ace Olszowka">
-//  Copyright (c) Ace Olszowka 2018. All rights reserved.
+//  Copyright (c) Ace Olszowka 2018-2020. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -34,73 +34,5 @@ namespace MsBuildFindDuplicateProjectFileNames
 
             return projectGuid.Value;
         }
-
-        public static IEnumerable<XElement> GetProjectReferenceNodes(XDocument projXml)
-        {
-            return projXml.Descendants(msbuildNS + "ProjectReference");
-        }
-
-        public static string GetProjectReferenceGUID(XElement projectReference, string projectPath)
-        {
-            // Get the existing Project Reference GUID
-            XElement projectReferenceGuidElement = projectReference.Descendants(msbuildNS + "Project").FirstOrDefault();
-            if (projectReferenceGuidElement == null)
-            {
-                string exception = $"A ProjectReference in {projectPath} does not contain a Project Element; this is invalid.";
-                throw new InvalidOperationException(exception);
-            }
-
-            // This is the referenced project
-            string projectReferenceGuid = projectReferenceGuidElement.Value;
-
-            return projectReferenceGuid;
-        }
-
-        public static string GetProjectReferenceName(XElement projectReference, string projectPath)
-        {
-            // Get the existing Project Reference Name
-            XElement projectReferenceNameElement = projectReference.Descendants(msbuildNS + "Name").FirstOrDefault();
-            if (projectReferenceNameElement == null)
-            {
-                string exception = $"A ProjectReference in {projectPath} does not contain a Name Element; this is invalid.";
-                throw new InvalidOperationException(exception);
-            }
-
-            // This is the referenced project
-            string projectReferenceName = projectReferenceNameElement.Value;
-
-            return projectReferenceName;
-        }
-
-        public static void SetProjectReferenceName(XElement projectReference, string name)
-        {
-            projectReference.Descendants(msbuildNS + "Name").First().SetValue(name);
-        }
-
-        public static string GetProjectReferenceIncludeValue(XElement projectReference, string projectPath)
-        {
-            // Get the existing Project Reference Include Value
-            XAttribute projectReferenceIncludeAttribute = projectReference.Attribute("Include");
-
-            if (projectReferenceIncludeAttribute == null)
-            {
-                string exception = $"A ProjectReference in {projectPath} does not contain an Include Attribute on it; this is invalid.";
-                throw new InvalidOperationException(exception);
-            }
-
-            // This is the referenced project
-            string projectReferenceInclude = projectReferenceIncludeAttribute.Value;
-
-            return projectReferenceInclude;
-        }
-
-        public static void SetProjectReferenceIncludeValue(XElement projectReference, string includeValue)
-        {
-            // Fix up the slashes to be Windows Slashes
-            includeValue = includeValue.Replace('/', '\\');
-
-            projectReference.Attribute("Include").SetValue(includeValue);
-        }
-
     }
 }
