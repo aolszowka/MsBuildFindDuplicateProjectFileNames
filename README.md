@@ -17,7 +17,7 @@ Note that if you rename a file you will need to update all MsBuild Project Syste
 There are now two ways to run this tool:
 
 1. (Compiled Executable) Invoke the tool via `MsBuildFindDuplicateProjectFileNames` and pass the arguments.
-2. (Dotnet Tool) Install this tool using the following command `dotnet tool install MsBuildFindDuplicateProjectFileNames` (assuming that you have the nuget package in your feed) then invoke it via `dotnet project-findduplicatename`
+2. (Dotnet Tool) Install this tool using the following command `dotnet tool install MsBuildFindDuplicateProjectFileNames` (assuming that you have the nuget package in your feed) then invoke it via `dotnet project-findduplicatefilenames`
 
 In both cases the flags to the tooling are identical:
 
