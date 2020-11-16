@@ -91,16 +91,7 @@ namespace MsBuildFindDuplicateProjectFileNames.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MsBuildFindDuplicateProjectFileNames.
-        /// </summary>
-        internal static string ProgramName {
-            get {
-                return ResourceManager.GetString("ProgramName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Usage: MsBuildFindDuplicateProjectFileNames C:\DirectoryWithProjects [-xml].
+        ///   Looks up a localized string similar to Usage: C:\DirectoryWithProjects [-xml].
         /// </summary>
         internal static string ShortUsageMessage {
             get {
