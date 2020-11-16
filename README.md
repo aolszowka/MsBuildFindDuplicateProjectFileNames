@@ -1,4 +1,6 @@
 # MsBuildFindDuplicateProjectFileNames
+![CI - Master](https://github.com/aolszowka/MsBuildFindDuplicateProjectFileNames/workflows/CI/badge.svg?branch=master)
+
 Utility to find MSBuild Project System Files which have duplicate file names.
 
 ## Background
@@ -12,8 +14,15 @@ You can use this tool to find duplicate MSBuild Project System file names in a s
 Note that if you rename a file you will need to update all MsBuild Project System files that had a ProjectReference to the renamed file, see the sister tool https://github.com/aolszowka/MsBuildProjectReferenceFixer for a utility to fix this. In addition you will also need to fix any Visual Studio Solution that was generated, see the sister tool https://github.com/aolszowka/VisualStudioSolutionFixer to fix this.
 
 ## Usage
+There are now two ways to run this tool:
+
+1. (Compiled Executable) Invoke the tool via `MsBuildFindDuplicateProjectFileNames` and pass the arguments.
+2. (Dotnet Tool) Install this tool using the following command `dotnet tool install MsBuildFindDuplicateProjectFileNames` (assuming that you have the nuget package in your feed) then invoke it via `dotnet project-findduplicatename`
+
+In both cases the flags to the tooling are identical:
+
 ```
-Usage: MsBuildFindDuplicateProjectFileNames C:\DirectoryWithProjects [-xml]
+Usage: C:\DirectoryWithProjects [-xml]
 
 Scans given directory for MsBuild Projects; reporting any duplicate Project
 Names it finds.
@@ -28,7 +37,7 @@ Arguments:
 ## Hacking
 The most likely change you will want to make is changing the supported project files. Because this tooling is operating on file names any extension is supported.
 
-See DuplicateProjectFileNames.GetProjectsInDirectory(string) for the place to modify this.
+See `DuplicateProjectFileNames.GetProjectsInDirectory(string)` for the place to modify this.
 
 ## Contributing
 Pull requests and bug reports are welcomed so long as they are MIT Licensed.
