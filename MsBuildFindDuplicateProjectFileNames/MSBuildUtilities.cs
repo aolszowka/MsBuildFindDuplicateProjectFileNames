@@ -29,7 +29,7 @@ namespace MsBuildFindDuplicateProjectFileNames
             if (projectGuid == null)
             {
                 string exception = $"Project {pathToProjFile} did not contain a ProjectGuid.";
-                throw new InvalidOperationException(pathToProjFile);
+                throw new InvalidOperationException(exception);
             }
 
             return projectGuid.Value;
