@@ -129,11 +129,8 @@ Names it finds.
 
 Arguments:</value>
   </data>
-  <data name="ProgramName" xml:space="preserve">
-    <value>MsBuildFindDuplicateProjectFileNames</value>
-  </data>
   <data name="ShortUsageMessage" xml:space="preserve">
-    <value>Usage: MsBuildFindDuplicateProjectFileNames C:\DirectoryWithProjects [-xml]</value>
+    <value>Usage: C:\DirectoryWithProjects [-xml]</value>
   </data>
   <data name="TargetDirectoryArgument" xml:space="preserve">
     <value>The directory to scan for MSBuild Projects</value>

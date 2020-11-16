@@ -39,8 +39,8 @@ namespace MsBuildFindDuplicateProjectFileNames
             catch (OptionException)
             {
                 Console.WriteLine(Strings.ShortUsageMessage);
-                Console.WriteLine($"Try `{Strings.ProgramName} --help` for more information.");
-                Environment.Exit(21);
+                Console.WriteLine($"Try `--help` for more information.");
+                Environment.Exit(160);
             }
 
             if (showHelp || string.IsNullOrEmpty(targetDirectory))
@@ -85,7 +85,7 @@ namespace MsBuildFindDuplicateProjectFileNames
             Console.WriteLine();
             Console.WriteLine($"              <>            {Strings.TargetDirectoryArgument}");
             p.WriteOptionDescriptions(Console.Out);
-            return 21;
+            return 160;
         }
 
         static void PrintXmlToConsole(IEnumerable<KeyValuePair<string, IDictionary<string, string>>> duplicateProjects)
